@@ -29,6 +29,8 @@ public class AddFilter1 extends CommonFilterImpl {
             }
             for(int i = 0; i<idx-2; i++)
                 out.write((char)buffer[i]);
+
+            // 12345 없으면 넣기
             if(idx >= 3 && is12345 == false){
                 if(numOfBlank != 4){
                     out.write(' ');
@@ -39,6 +41,7 @@ public class AddFilter1 extends CommonFilterImpl {
                 out.write('4');
                 out.write('5');
             }
+            // 23456 없으면 넣기
             if(idx >= 3 && is23456 == false){
                 out.write(' ');
                 out.write('2');

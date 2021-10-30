@@ -22,10 +22,12 @@ public class MiddleFilter4 extends CommonFilterImpl{
             	byte_read = in.read();
                 if(byte_read == ' ') numOfBlank++;
                 if(byte_read != -1) buffer[idx++] = (byte) byte_read;
+                // 전공이CS인지 체크
                 if(numOfBlank == checkBlank && buffer[idx-3] == 'C' && buffer[idx-2] == 'S'){
                     isCS = true;
                 }
             }
+            // 전공이CS이면 기록
             if(isCS == false) {
                 if(idx>3) {
                     for(int i = 0; i<idx; i++)

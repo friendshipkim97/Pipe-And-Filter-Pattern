@@ -21,9 +21,11 @@ public class MiddleFilter3 extends CommonFilterImpl{
             	byte_read = in.read();
                 if(byte_read == ' ') numOfBlank++;
                 if(byte_read != -1) buffer[idx++] = (byte) byte_read;
+                // 2013학번인지 체크
                 if(numOfBlank == 1 && buffer[idx-9] == '2' && buffer[idx-8] == '0' && buffer[idx-7] == '1' && buffer[idx-6] == '3')
                     is2013 = true;
             }
+            // 2013학번이면 기록
             if(is2013 == true) {
                 for(int i = 0; i<idx; i++) 
                     out.write((char)buffer[i]);

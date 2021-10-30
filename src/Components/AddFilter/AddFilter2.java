@@ -25,6 +25,8 @@ public class AddFilter2 extends CommonFilterImpl {
             }
             for(int i = 0; i<idx-2; i++)
                 out.write((char)buffer[i]);
+
+            // 23456 없으면 넣기
             if(idx >= 3 && is23456 == false){
                 if(numOfBlank != 4){
                     out.write(' ');

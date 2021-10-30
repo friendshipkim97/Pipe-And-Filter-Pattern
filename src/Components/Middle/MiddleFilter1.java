@@ -21,9 +21,11 @@ public class MiddleFilter1 extends CommonFilterImpl{
             	byte_read = in.read();
                 if(byte_read == ' ') numOfBlank++;
                 if(byte_read != -1) buffer[idx++] = (byte) byte_read;
+                // 전공이 CS인지 체크
                 if(numOfBlank == checkBlank && buffer[idx-3] == 'C' && buffer[idx-2] == 'S')
                     isCS = true;
-            }      
+            }
+            // 전공이 CS이면 기록
             if(isCS == true) {
                 for(int i = 0; i<idx; i++) 
                     out.write((char)buffer[i]);

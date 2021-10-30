@@ -28,6 +28,7 @@ public class AddFilter4 extends CommonFilterImpl {
                 }
             }
 
+            // 17652 있으면 제거
             if(is17652 == true){
                 for(int i = 0; i<index17652; i++){
                     out.write((char)buffer[i]);
