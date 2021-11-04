@@ -3,27 +3,23 @@
  */
 package Components.Source;
 
-import java.io.BufferedInputStream;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 
+import Components.utility.FileUtility;
 import Framework.CommonFilterImpl;
 
 public class SourceFilter extends CommonFilterImpl{
     private String sourceFile;
+    private FileUtility fileUtility;
+    private int portNo;
     
-    public SourceFilter(String inputFile){
+    public SourceFilter(String inputFile, int portNo){
         this.sourceFile = inputFile;
+        this.fileUtility = new FileUtility();
+        this.portNo = portNo;
     }    
     @Override
     public boolean specificComputationForFilter() throws IOException {
-        int byte_read;    
-        BufferedInputStream br = new BufferedInputStream(new FileInputStream(new File(sourceFile)));
-        while(true) {
-            byte_read = br.read();
-            if (byte_read == -1) return true;
-            out.write(byte_read);
-        }
+        return this.fileUtility.readFile(out.get(portNo), sourceFile);
     }
 }

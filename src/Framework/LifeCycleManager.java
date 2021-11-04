@@ -6,7 +6,6 @@ package Framework;
 import Components.AddFilter.AddFilter1;
 import Components.AddFilter.AddFilter2;
 import Components.AddFilter.AddFilter3;
-import Components.AddFilter.AddFilter4;
 import Components.Middle.MiddleFilter1;
 import Components.Middle.MiddleFilter2;
 import Components.Middle.MiddleFilter3;
@@ -19,10 +18,12 @@ import java.io.IOException;
 public class LifeCycleManager {
     public static void main(String[] args) {
         try {
+
             LifeCycleManager lifeCycleManager = new LifeCycleManager();
             //lifeCycleManager.hw1();
             //lifeCycleManager.hw2();
-            lifeCycleManager.hw3();
+            //lifeCycleManager.hw3();
+            lifeCycleManager.hw4();
 
         } catch(Exception e) {
             e.printStackTrace();
@@ -30,14 +31,14 @@ public class LifeCycleManager {
     }
 
     private void hw1() throws IOException {
-        CommonFilter sourceFilter = new SourceFilter("Students.txt");
-        CommonFilter sinkFilter = new SinkFilter("Output.txt");
+        CommonFilter sourceFilter = new SourceFilter("Students.txt", 0);
+        CommonFilter sinkFilter = new SinkFilter("Output.txt", 0);
         CommonFilter middleFilter = new MiddleFilter1();
         CommonFilter addFilter = new AddFilter1();
 
-        sourceFilter.connectOutputTo(middleFilter);
-        middleFilter.connectOutputTo(addFilter);
-        addFilter.connectOutputTo(sinkFilter);
+        sourceFilter.connectOutputTo(middleFilter, 0);
+        middleFilter.connectOutputTo(addFilter, 0);
+        addFilter.connectOutputTo(sinkFilter, 0);
 
         Thread thread1 = new Thread(sourceFilter);
         Thread thread2 = new Thread(sinkFilter);
@@ -52,14 +53,14 @@ public class LifeCycleManager {
 
 
     private void hw2() throws IOException {
-        CommonFilter sourceFilter = new SourceFilter("Students.txt");
-        CommonFilter sinkFilter = new SinkFilter("Output.txt");
+        CommonFilter sourceFilter = new SourceFilter("Students.txt", 0);
+        CommonFilter sinkFilter = new SinkFilter("Output.txt", 0);
         CommonFilter middleFilter2 = new MiddleFilter2();
         CommonFilter addFilter2 = new AddFilter2();
 
-        sourceFilter.connectOutputTo(middleFilter2);
-        middleFilter2.connectOutputTo(addFilter2);
-        addFilter2.connectOutputTo(sinkFilter);
+        sourceFilter.connectOutputTo(middleFilter2, 0);
+        middleFilter2.connectOutputTo(addFilter2, 0);
+        addFilter2.connectOutputTo(sinkFilter, 0);
 
         Thread thread1 = new Thread(sourceFilter);
         Thread thread2 = new Thread(sinkFilter);
@@ -73,32 +74,52 @@ public class LifeCycleManager {
     }
 
     private void hw3() throws IOException {
-        CommonFilter sourceFilter = new SourceFilter("Students.txt");
-        CommonFilter sinkFilter = new SinkFilter("Output.txt");
+        CommonFilter sourceFilter = new SourceFilter("Students.txt", 0);
+        CommonFilter sinkFilter = new SinkFilter("Output.txt", 0);
         CommonFilter middleFilter3 = new MiddleFilter3();
-        CommonFilter middleFilter4 = new MiddleFilter4();
         CommonFilter addFilter3 = new AddFilter3();
-        CommonFilter addFilter4 = new AddFilter4();
 
-        sourceFilter.connectOutputTo(middleFilter3);
-        middleFilter3.connectOutputTo(middleFilter4);
-        middleFilter4.connectOutputTo(addFilter3);
-        addFilter3.connectOutputTo(addFilter4);
-        addFilter4.connectOutputTo(sinkFilter);
+        sourceFilter.connectOutputTo(middleFilter3, 0);
+        middleFilter3.connectOutputTo(addFilter3, 0);
+        addFilter3.connectOutputTo(sinkFilter, 0);
 
         Thread thread1 = new Thread(sourceFilter);
         Thread thread2 = new Thread(sinkFilter);
         Thread thread3 = new Thread(middleFilter3);
-        Thread thread4 = new Thread(middleFilter4);
-        Thread thread5 = new Thread(addFilter3);
-        Thread thread6 = new Thread(addFilter4);
+        Thread thread4 = new Thread(addFilter3);
+
+        thread1.start();
+        thread2.start();
+        thread3.start();
+        thread4.start();
+    }
+
+    private void hw4() throws IOException {
+        CommonFilter sourceFilter1 = new SourceFilter("Students.txt", 0);
+        CommonFilter sourceFilter2 = new SourceFilter("Courses.txt", 1);
+
+        CommonFilter sinkFilter1 = new SinkFilter("Output-1.txt", 0);
+        CommonFilter sinkFilter2 = new SinkFilter("Output-2.txt", 1);
+
+        CommonFilter middleFilter4 = new MiddleFilter4();
+
+        sourceFilter1.connectOutputTo(middleFilter4, 0);
+        sourceFilter2.connectOutputTo(middleFilter4, 1);
+        middleFilter4.connectOutputTo(sinkFilter1, 0);
+        middleFilter4.connectOutputTo(sinkFilter2, 1);
+
+        Thread thread1 = new Thread(sourceFilter1);
+        Thread thread2 = new Thread(sourceFilter2);
+        Thread thread3 = new Thread(sinkFilter1);
+        Thread thread4 = new Thread(sinkFilter2);
+        Thread thread5 = new Thread(middleFilter4);
 
         thread1.start();
         thread2.start();
         thread3.start();
         thread4.start();
         thread5.start();
-        thread6.start();
     }
+
 
 }

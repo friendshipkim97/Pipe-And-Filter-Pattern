@@ -8,8 +8,9 @@ import java.io.PipedInputStream;
 import java.io.PipedOutputStream;
 
 public interface CommonFilter extends Runnable{
-    public void connectOutputTo(CommonFilter filter) throws IOException;
-    public void connectInputTo(CommonFilter filter) throws IOException;
-    public PipedInputStream getPipedInputStream();
-    public PipedOutputStream getPipedOutputStream();
+    public void connectOutputTo(CommonFilter filter, int portNo) throws IOException;
+    public void connectInputTo(CommonFilter filter, int portNo) throws IOException;
+    public PipedInputStream getPipedInputStream(int portNo);
+    public PipedOutputStream getPipedOutputStream(int portNo);
+
 }

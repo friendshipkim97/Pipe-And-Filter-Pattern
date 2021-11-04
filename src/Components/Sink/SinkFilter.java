@@ -6,26 +6,21 @@ package Components.Sink;
 import java.io.FileWriter;
 import java.io.IOException;
 
+import Components.utility.FileUtility;
 import Framework.CommonFilterImpl;
 
 public class SinkFilter extends CommonFilterImpl{
     private String sinkFile;
+    private FileUtility fileUtility;
+    private int portNo;
     
-    public SinkFilter(String outputFile) {
+    public SinkFilter(String outputFile, int portNo) {
         this.sinkFile = outputFile;
+        this.fileUtility = new FileUtility();
+        this.portNo = portNo;
     }
     @Override
     public boolean specificComputationForFilter() throws IOException {
-        int byte_read;
-        FileWriter fw = new FileWriter(this.sinkFile);
-        while(true) {
-            byte_read = in.read(); 
-            if (byte_read == -1) {
-            	 fw.close();
-                 System.out.print( "::Filtering is finished; Output file is created." );  
-                 return true;
-            }
-            fw.write((char)byte_read);
-        }   
+        return this.fileUtility.writeFile(in.get(portNo), sinkFile);
     }
 }

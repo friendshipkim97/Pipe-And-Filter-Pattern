@@ -3,6 +3,8 @@
  */
 package Components.Middle;
 
+import Components.utility.FileUtility;
+import Components.utility.Student;
 import Framework.CommonFilterImpl;
 
 import java.io.IOException;
@@ -10,33 +12,20 @@ import java.io.IOException;
 public class MiddleFilter2 extends CommonFilterImpl{
     @Override
     public boolean specificComputationForFilter() throws IOException {
-    	int checkBlank = 4;
-        int numOfBlank = 0;
-        int idx = 0;
-        byte[] buffer = new byte[64];
-        boolean isEE = false;
-        int byte_read = 0;
 
-        while(true) {
-            while(byte_read != '\n' && byte_read != -1) {
-            	byte_read = in.read();
-                if(byte_read == ' ') numOfBlank++;
-                if(byte_read != -1) buffer[idx++] = (byte) byte_read;
-                // 전공이EE인지 체크
-                if(numOfBlank == checkBlank && buffer[idx-3] == 'E' && buffer[idx-2] == 'E')
-                    isEE = true;
-            }      
-            if(isEE == true) {
-                for(int i = 0; i<idx; i++) 
-                    out.write((char)buffer[i]);
-                    out.write(13);
-                    out.write(10);
-                isEE = false;
+        FileUtility fileUtility;
+        String line;
+        Student student;
+
+        while (true) {
+            fileUtility = new FileUtility();
+            line = fileUtility.readStudentLine(in.get(0));
+            if(line.startsWith("readComplete")) return true;
+            if(!line.trim().isEmpty()) {
+                student = new Student(line);
+                if(student.majorCheck("EE")){
+                    fileUtility.writeLine(line, out.get(0)); }
             }
-            if (byte_read == -1) return true;
-            idx = 0;
-            numOfBlank = 0;
-            byte_read = '\0';
         }
     }  
 }

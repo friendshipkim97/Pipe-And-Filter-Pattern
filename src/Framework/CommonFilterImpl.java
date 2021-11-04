@@ -7,22 +7,24 @@ import java.io.EOFException;
 import java.io.IOException;
 import java.io.PipedInputStream;
 import java.io.PipedOutputStream;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public abstract class CommonFilterImpl implements CommonFilter {
-	protected PipedInputStream in = new PipedInputStream();
-	protected PipedOutputStream out = new PipedOutputStream();
+	protected ArrayList<PipedInputStream> in = new ArrayList<>(Arrays.asList(new PipedInputStream(), new PipedInputStream()));
+	protected ArrayList<PipedOutputStream> out = new ArrayList<>(Arrays.asList(new PipedOutputStream(), new PipedOutputStream()));
 
-	public void connectOutputTo(CommonFilter nextFilter) throws IOException {
-		out.connect(nextFilter.getPipedInputStream());
+	public void connectOutputTo(CommonFilter nextFilter, int portNo) throws IOException {
+		out.get(portNo).connect(nextFilter.getPipedInputStream(portNo));
 	}
-	public void connectInputTo(CommonFilter previousFilter) throws IOException {
-		in.connect(previousFilter.getPipedOutputStream());
+	public void connectInputTo(CommonFilter previousFilter, int portNo) throws IOException {
+		in.get(portNo).connect(previousFilter.getPipedOutputStream(portNo));
 	}
-	public PipedInputStream getPipedInputStream() {
-		return in;
+	public PipedInputStream getPipedInputStream(int portNo) {
+		return in.get(portNo);
 	}
-	public PipedOutputStream getPipedOutputStream() {
-		return out;
+	public PipedOutputStream getPipedOutputStream(int portNo) {
+		return out.get(portNo);
 	}
 	
 	abstract public boolean specificComputationForFilter() throws IOException;
@@ -39,8 +41,10 @@ public abstract class CommonFilterImpl implements CommonFilter {
 	}
 	private void closePorts() {
 		try {
-			out.close();
-			in.close();
+			out.get(0).close();
+			in.get(0).close();
+			out.get(1).close();
+			in.get(1).close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
