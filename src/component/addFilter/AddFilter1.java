@@ -1,15 +1,16 @@
-package Components.AddFilter;
+package component.addFilter;
 
-import Components.utility.FileUtility;
-import Components.utility.Student;
-import Framework.CommonFilterImpl;
+import component.utility.FileUtility;
+import component.utility.Student;
+import framework.CommonFilterImpl;
 
 import java.io.IOException;
 
-public class AddFilter3 extends CommonFilterImpl {
+public class AddFilter1 extends CommonFilterImpl {
 
     @Override
     public boolean specificComputationForFilter() throws IOException {
+
         FileUtility fileUtility;
         String line;
         Student student;
@@ -20,10 +21,10 @@ public class AddFilter3 extends CommonFilterImpl {
             if(line.startsWith("readComplete")) return true;
             if(!line.trim().isEmpty()) {
                 student = new Student(line);
-                if (student.courseCheck("17651")) {
-                    student.deleteCourse("17651"); }
-                if (student.courseCheck("17652")) {
-                    student.deleteCourse("17652"); }
+                if (!student.courseCheck("12345")) {
+                    student.addCourse("12345"); }
+                if (!student.courseCheck("23456")) {
+                    student.addCourse("23456"); }
                 line = fileUtility.makeStudentLine(student);
                 fileUtility.writeLine(line, out.get(0));
             }

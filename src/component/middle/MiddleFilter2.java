@@ -1,13 +1,15 @@
-package Components.AddFilter;
+/**
+ * Copyright(c) 2021 All rights reserved by Jungho Kim in Myungji University.
+ */
+package component.middle;
 
-import Components.utility.FileUtility;
-import Components.utility.Student;
-import Framework.CommonFilterImpl;
+import component.utility.FileUtility;
+import component.utility.Student;
+import framework.CommonFilterImpl;
 
 import java.io.IOException;
 
-public class AddFilter2 extends CommonFilterImpl {
-
+public class MiddleFilter2 extends CommonFilterImpl{
     @Override
     public boolean specificComputationForFilter() throws IOException {
 
@@ -21,11 +23,9 @@ public class AddFilter2 extends CommonFilterImpl {
             if(line.startsWith("readComplete")) return true;
             if(!line.trim().isEmpty()) {
                 student = new Student(line);
-                if (!student.courseCheck("23456")) {
-                    student.addCourse("23456"); }
-                line = fileUtility.makeStudentLine(student);
-                fileUtility.writeLine(line, out.get(0));
+                if(student.majorCheck("EE")){
+                    fileUtility.writeLine(line, out.get(0)); }
             }
         }
-    }
+    }  
 }

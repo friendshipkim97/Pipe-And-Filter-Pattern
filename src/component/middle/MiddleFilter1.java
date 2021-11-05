@@ -1,14 +1,13 @@
 /**
  * Copyright(c) 2021 All rights reserved by Jungho Kim in Myungji University.
  */
-package Components.Middle;
+package component.middle;
 
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 
-import Components.utility.FileUtility;
-import Components.utility.Student;
-import Framework.CommonFilterImpl;
+import component.utility.FileUtility;
+import component.utility.Student;
+import framework.CommonFilterImpl;
 
 public class MiddleFilter1 extends CommonFilterImpl {
     @Override

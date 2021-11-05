@@ -1,12 +1,12 @@
 /**
  * Copyright(c) 2021 All rights reserved by Jungho Kim in Myungji University.
  */
-package Components.Source;
+package component.source;
 
 import java.io.IOException;
 
-import Components.utility.FileUtility;
-import Framework.CommonFilterImpl;
+import component.utility.FileUtility;
+import framework.CommonFilterImpl;
 
 public class SourceFilter extends CommonFilterImpl{
     private String sourceFile;

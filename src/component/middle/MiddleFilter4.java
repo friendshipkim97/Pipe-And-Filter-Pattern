@@ -1,12 +1,12 @@
 /**
  * Copyright(c) 2021 All rights reserved by Jungho Kim in Myungji University.
  */
-package Components.Middle;
+package component.middle;
 
-import Components.utility.Course;
-import Components.utility.FileUtility;
-import Components.utility.Student;
-import Framework.CommonFilterImpl;
+import component.utility.Course;
+import component.utility.FileUtility;
+import component.utility.Student;
+import framework.CommonFilterImpl;
 
 import java.io.IOException;
 import java.util.ArrayList;

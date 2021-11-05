@@ -1,4 +1,4 @@
-package Components.utility;
+package component.utility;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
