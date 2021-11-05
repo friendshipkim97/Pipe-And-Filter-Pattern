@@ -1,17 +1,17 @@
 /**
  * Copyright(c) 2021 All rights reserved by Jungho Kim in Myungji University.
  */
-package Framework;
+package framework;
 
-import Components.AddFilter.AddFilter1;
-import Components.AddFilter.AddFilter2;
-import Components.AddFilter.AddFilter3;
-import Components.Middle.MiddleFilter1;
-import Components.Middle.MiddleFilter2;
-import Components.Middle.MiddleFilter3;
-import Components.Middle.MiddleFilter4;
-import Components.Sink.SinkFilter;
-import Components.Source.SourceFilter;
+import component.addFilter.AddFilter1;
+import component.addFilter.AddFilter2;
+import component.addFilter.AddFilter3;
+import component.middle.MiddleFilter1;
+import component.middle.MiddleFilter2;
+import component.middle.MiddleFilter3;
+import component.middle.MiddleFilter4;
+import component.sink.SinkFilter;
+import component.source.SourceFilter;
 
 import java.io.IOException;
 
