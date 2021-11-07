@@ -24,9 +24,7 @@ public class MiddleFilter1 extends CommonFilterImpl {
             if(!line.trim().isEmpty()) {
                 student = new Student(line);
                 if(student.majorCheck("CS")){
-                    fileUtility.writeLine(line, out.get(0)); }
-                }
-            }
+                    fileUtility.writeLine(line, out.get(0)); } } }
 
         }
     }

@@ -23,8 +23,6 @@ public class MiddleFilter3 extends CommonFilterImpl{
             if(!line.trim().isEmpty()) {
                 student = new Student(line);
                 if(student.studentNumberCheck("2013") && !student.majorCheck("CS")){
-                    fileUtility.writeLine(line, out.get(0)); }
-            }
-        }
+                    fileUtility.writeLine(line, out.get(0)); } } }
     }  
 }

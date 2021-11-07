@@ -57,8 +57,7 @@ public class MiddleFilter4 extends CommonFilterImpl{
         boolean advancedCourseCheck = true;
         for (String advancedCourse : advancedCourses) {
             if(student.getCourses().contains(advancedCourse) == false) {
-                advancedCourseCheck = false; }
-        }
+                advancedCourseCheck = false; } }
         return advancedCourseCheck;
     }
 
@@ -67,9 +66,7 @@ public class MiddleFilter4 extends CommonFilterImpl{
         for (String studentCourse : student.getCourses()) {
             for (Course tempCourse : courses) {
                 if(tempCourse.getCourseNumber().equals(studentCourse) && tempCourse.getAdvancedCourseNumbers().size() != 0){
-                    advancedCourses.addAll(tempCourse.getAdvancedCourseNumbers()); }
-            }
-        }
+                    advancedCourses.addAll(tempCourse.getAdvancedCourseNumbers()); } } }
         return advancedCourses;
     }
 
