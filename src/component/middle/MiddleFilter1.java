@@ -6,25 +6,26 @@ package component.middle;
 import java.io.IOException;
 
 import component.utility.FileUtility;
-import component.utility.Student;
+import component.domain.Student;
+import component.utility.LineUtility;
 import framework.CommonFilterImpl;
 
 public class MiddleFilter1 extends CommonFilterImpl {
     @Override
     public boolean specificComputationForFilter() throws IOException {
 
-        FileUtility fileUtility;
+        LineUtility lineUtility;
         String line;
         Student student;
 
         while (true) {
-            fileUtility = new FileUtility();
-            line = fileUtility.readStudentLine(in.get(0));
+            lineUtility = new LineUtility();
+            line = lineUtility.readStudentLine(in.get(0));
             if(line.startsWith("readComplete")) return true;
             if(!line.trim().isEmpty()) {
                 student = new Student(line);
                 if(student.majorCheck("CS")){
-                    fileUtility.writeLine(line, out.get(0)); } } }
+                    lineUtility.writeLine(line, out.get(0)); } } }
 
         }
     }

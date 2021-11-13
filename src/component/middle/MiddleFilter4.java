@@ -3,9 +3,10 @@
  */
 package component.middle;
 
-import component.utility.Course;
+import component.domain.Course;
 import component.utility.FileUtility;
-import component.utility.Student;
+import component.domain.Student;
+import component.utility.LineUtility;
 import framework.CommonFilterImpl;
 
 import java.io.IOException;
@@ -16,7 +17,7 @@ import java.util.stream.Collectors;
 public class MiddleFilter4 extends CommonFilterImpl{
     @Override
     public boolean specificComputationForFilter() throws IOException {
-        FileUtility fileUtility;
+        LineUtility lineUtility;
         String courseLine;
         String studentLine;
         Student student;
@@ -26,18 +27,18 @@ public class MiddleFilter4 extends CommonFilterImpl{
         List<String> advancedCourses;
 
         while (true){
-            fileUtility = new FileUtility();
-            courseLine = fileUtility.readCourseLine(in.get(1));
+            lineUtility = new LineUtility();
+            courseLine = lineUtility.readCourseLine(in.get(1));
             if(!courseLine.trim().isEmpty()) {
                 course = new Course(courseLine);
                 courses.add(course);
             }
-            if(fileUtility.getByte_read() == -1) { break; }
+            if(lineUtility.getByte_read() == -1) { break; }
         }
 
         while (true){
-            fileUtility = new FileUtility();
-            studentLine = fileUtility.readStudentLine(in.get(0));
+            lineUtility = new LineUtility();
+            studentLine = lineUtility.readStudentLine(in.get(0));
             if(studentLine.startsWith("readComplete")) return true;
             if(!studentLine.trim().isEmpty()) {
                 student = new Student(studentLine);
@@ -47,8 +48,8 @@ public class MiddleFilter4 extends CommonFilterImpl{
                 advancedCourses = advancedCourses.stream().distinct().collect(Collectors.toList());
                 // 강좌가 선강좌를 듣고 있는지 체크
                 advancedCourseCheck = checkAdvancedCourse(student, advancedCourses);
-                if(advancedCourseCheck) fileUtility.writeLine(studentLine, out.get(0));
-                else  fileUtility.writeLine(studentLine, out.get(1));
+                if(advancedCourseCheck) lineUtility.writeLine(studentLine, out.get(0));
+                else  lineUtility.writeLine(studentLine, out.get(1));
                 }
             }
         }

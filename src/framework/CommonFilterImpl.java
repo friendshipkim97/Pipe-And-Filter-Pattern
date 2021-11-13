@@ -11,8 +11,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public abstract class CommonFilterImpl implements CommonFilter {
-	protected ArrayList<PipedInputStream> in = new ArrayList<>(Arrays.asList(new PipedInputStream(), new PipedInputStream()));
-	protected ArrayList<PipedOutputStream> out = new ArrayList<>(Arrays.asList(new PipedOutputStream(), new PipedOutputStream()));
+
+	protected ArrayList<PipedInputStream> in;
+	protected ArrayList<PipedOutputStream> out;
+
+	public CommonFilterImpl() {
+		this.in = new ArrayList<>(Arrays.asList(new PipedInputStream(), new PipedInputStream()));
+		this.out = new ArrayList<>(Arrays.asList(new PipedOutputStream(), new PipedOutputStream()));
+	}
 
 	public void connectOutputTo(CommonFilter nextFilter, int portNo) throws IOException {
 		out.get(portNo).connect(nextFilter.getPipedInputStream(portNo));
@@ -28,7 +34,8 @@ public abstract class CommonFilterImpl implements CommonFilter {
 	}
 	
 	abstract public boolean specificComputationForFilter() throws IOException;
-	// Implementation defined in Runnable interface for thread
+
+
 	public void run() {
 		try {
 			specificComputationForFilter();

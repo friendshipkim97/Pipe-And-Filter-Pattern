@@ -1,7 +1,8 @@
 package component.addFilter;
 
 import component.utility.FileUtility;
-import component.utility.Student;
+import component.domain.Student;
+import component.utility.LineUtility;
 import framework.CommonFilterImpl;
 
 import java.io.IOException;
@@ -10,13 +11,13 @@ public class AddFilter3 extends CommonFilterImpl {
 
     @Override
     public boolean specificComputationForFilter() throws IOException {
-        FileUtility fileUtility;
+        LineUtility lineUtility;
         String line;
         Student student;
 
         while (true) {
-            fileUtility = new FileUtility();
-            line = fileUtility.readStudentLine(in.get(0));
+            lineUtility = new LineUtility();
+            line = lineUtility.readStudentLine(in.get(0));
             if(line.startsWith("readComplete")) return true;
             if(!line.trim().isEmpty()) {
                 student = new Student(line);
@@ -24,8 +25,8 @@ public class AddFilter3 extends CommonFilterImpl {
                     student.deleteCourse("17651"); }
                 if (student.courseCheck("17652")) {
                     student.deleteCourse("17652"); }
-                line = fileUtility.makeStudentLine(student);
-                fileUtility.writeLine(line, out.get(0));
+                line = lineUtility.makeStudentLine(student);
+                lineUtility.writeLine(line, out.get(0));
             }
         }
     }

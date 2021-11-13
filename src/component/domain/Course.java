@@ -1,4 +1,4 @@
-package component.utility;
+package component.domain;
 
 import java.util.ArrayList;
 import java.util.List;
