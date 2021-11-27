@@ -1,5 +1,6 @@
 package component.addFilter;
 
+import component.constant.Constants.EAddFilter1;
 import component.utility.FileUtility;
 import component.domain.Student;
 import component.utility.LineUtility;
@@ -19,7 +20,7 @@ public class AddFilter1 extends CommonFilterImpl {
         while (true) {
             lineUtility = new LineUtility();
             line = lineUtility.readStudentLine(in.get(0));
-            if(line.startsWith("readComplete")) return true;
+            if(line.startsWith(EAddFilter1.eReadComplete.getContent())) return true;
             if(!line.trim().isEmpty()) {
                 student = new Student(line);
                 if (!student.courseCheck("12345")) {
