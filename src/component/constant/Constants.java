@@ -2,6 +2,42 @@ package component.constant;
 
 public class Constants {
 
+    public enum ECourse{
+        eSizeZero(0),
+        eSizeOne(1),
+        eSizeTwo(2),
+        eSizeThree(3),
+        eSpace(" ");
+
+        private int number;
+        private String content;
+        ECourse(String content) { this.content = content; }
+        ECourse(int number) { this.number = number; }
+        public String getContent() { return content; }
+        public int getNumber() { return number; }
+    }
+
+    public enum EStudent{
+        eSizeZero(0),
+        eSizeOne(1),
+        eSizeTwo(2),
+        eSizeThree(3),
+        eSizeFour(4),
+        eSpace(" "),
+        eTrue(true),
+        eFalse(false);
+
+        private int number;
+        private String content;
+        private boolean check;
+        EStudent(String content) { this.content = content; }
+        EStudent(int number) { this.number = number; }
+        EStudent(boolean check) { this.check = check; }
+        public String getContent() { return content; }
+        public int getNumber() { return number; }
+        public boolean isCheck() { return check; }
+    }
+
     public enum EStudentMajorFilter{
 
         ePortZero(0),

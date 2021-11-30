@@ -1,5 +1,7 @@
 package component.domain;
 
+import component.constant.Constants.ECourse;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,13 +15,13 @@ public class Course {
     public Course(String line) {
 
         advancedCourseNumbers = new ArrayList<>();
-        String[] strAry = line.split(" ");
+        String[] strAry = line.split(ECourse.eSpace.getContent());
 
-        for (int i=0; i<strAry.length; i++) {
-            if(i == 0) this.courseNumber = strAry[i];
-            else if(i == 1) this.professorLastName = strAry[i];
-            else if(i == 2) this.courseName = strAry[i];
-            else if(i >= 3) { String tempCourse = strAry[i].trim();
+        for (int i = ECourse.eSizeZero.getNumber(); i<strAry.length; i++) {
+            if(i == ECourse.eSizeZero.getNumber()) this.courseNumber = strAry[i];
+            else if(i == ECourse.eSizeOne.getNumber()) this.professorLastName = strAry[i];
+            else if(i == ECourse.eSizeTwo.getNumber()) this.courseName = strAry[i];
+            else if(i >= ECourse.eSizeThree.getNumber()) { String tempCourse = strAry[i].trim();
                 this.advancedCourseNumbers.add(tempCourse); }
         }
     }

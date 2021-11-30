@@ -1,5 +1,7 @@
 package component.domain;
 
+import component.constant.Constants.EStudent;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,42 +16,31 @@ public class Student {
     public Student(String line) {
 
         courses = new ArrayList<>();
-        String[] strAry = line.split(" ");
+        String[] strAry = line.split(EStudent.eSpace.getContent());
 
-        for (int i=0; i<strAry.length; i++) {
-            if(i == 0) this.studentNumber = strAry[i];
-            else if(i == 1) this.lastName = strAry[i];
-            else if(i == 2) this.firstName = strAry[i];
-            else if(i == 3) this.major = strAry[i];
-            else if(i >= 4) { String tempCourse = strAry[i].trim();
-            this.courses.add(tempCourse); }
-        }
-    }
+        for (int i = EStudent.eSizeZero.getNumber(); i<strAry.length; i++) {
+            if(i == EStudent.eSizeZero.getNumber()) this.studentNumber = strAry[i];
+            else if(i == EStudent.eSizeOne.getNumber()) this.lastName = strAry[i];
+            else if(i == EStudent.eSizeTwo.getNumber()) this.firstName = strAry[i];
+            else if(i == EStudent.eSizeThree.getNumber()) this.major = strAry[i];
+            else if(i >= EStudent.eSizeFour.getNumber()) { String tempCourse = strAry[i].trim();
+            this.courses.add(tempCourse); } } }
 
     public boolean majorCheck(String major){
-        if(this.major.equals(major)) return true;
-        else return false;
-    }
-
+        if(this.major.equals(major)) return EStudent.eTrue.isCheck();
+        else return EStudent.eFalse.isCheck(); }
     public boolean courseCheck(String course) {
         if(!this.courses.isEmpty()) {
             for (String tempCourse : courses) {
                 if (tempCourse.equals(course)) {
-                    return true; }
-            }
-        }
-        return false;
-    }
-
+                    return EStudent.eTrue.isCheck(); } } }
+        return EStudent.eFalse.isCheck(); }
     public boolean studentNumberCheck(String studentNumber) {
-        if(this.studentNumber.startsWith(studentNumber)) return true;
-        else return false;
-    }
-
+        if(this.studentNumber.startsWith(studentNumber)) return EStudent.eTrue.isCheck();
+        else return EStudent.eFalse.isCheck(); }
     public void addCourse(String course) {
         this.courses.add(course);
     }
-
     public void deleteCourse(String course) {
         this.courses.remove(course);
     }
