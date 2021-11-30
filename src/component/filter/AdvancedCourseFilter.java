@@ -59,7 +59,6 @@ public class AdvancedCourseFilter extends CommonFilterImpl{
             if(student.getCourses().contains(advancedCourse) == EAdvancedCourseFilter.eFalse.isCheck()) {
                 advancedCourseCheck = EAdvancedCourseFilter.eFalse.isCheck(); } }
         return advancedCourseCheck; }
-
     private List<String> getAllAdvancedCourses(Student student, List<Course> courses) {
         List<String> advancedCourses = new ArrayList<>();
         for (String studentCourse : student.getCourses()) {

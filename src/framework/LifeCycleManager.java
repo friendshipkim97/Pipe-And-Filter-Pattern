@@ -18,10 +18,10 @@ public class LifeCycleManager {
         try {
 
             LifeCycleManager lifeCycleManager = new LifeCycleManager();
-            lifeCycleManager.hw1();
+            //lifeCycleManager.hw1();
             //lifeCycleManager.hw2();
             //lifeCycleManager.hw3();
-            //lifeCycleManager.hw4();
+            lifeCycleManager.hw4();
 
         } catch(Exception e) {
             e.printStackTrace();
