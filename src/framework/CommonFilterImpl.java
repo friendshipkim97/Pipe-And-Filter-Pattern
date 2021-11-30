@@ -3,6 +3,8 @@
  */
 package framework;
 
+import component.constant.Constants.ECommonFilterImpl;
+
 import java.io.EOFException;
 import java.io.IOException;
 import java.io.PipedInputStream;
@@ -48,10 +50,10 @@ public abstract class CommonFilterImpl implements CommonFilter {
 	}
 	private void closePorts() {
 		try {
-			out.get(0).close();
-			in.get(0).close();
-			out.get(1).close();
-			in.get(1).close();
+			out.get(ECommonFilterImpl.ePortZero.getNumber()).close();
+			in.get(ECommonFilterImpl.ePortZero.getNumber()).close();
+			out.get(ECommonFilterImpl.ePortOne.getNumber()).close();
+			in.get(ECommonFilterImpl.ePortOne.getNumber()).close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

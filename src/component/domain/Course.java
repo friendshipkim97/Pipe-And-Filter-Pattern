@@ -25,14 +25,9 @@ public class Course {
     }
 
     /**
-     * getters and setters
+     * getters
      */
+
     public String getCourseNumber() { return courseNumber; }
-    public void setCourseNumber(String courseNumber) { this.courseNumber = courseNumber; }
-    public String getProfessorLastName() { return professorLastName; }
-    public void setProfessorLastName(String professorLastName) { this.professorLastName = professorLastName; }
-    public String getCourseName() { return courseName; }
-    public void setCourseName(String courseName) { this.courseName = courseName; }
     public List<String> getAdvancedCourseNumbers() { return advancedCourseNumbers; }
-    public void setAdvancedCourseNumbers(List<String> advancedCourseNumbers) { this.advancedCourseNumbers = advancedCourseNumbers; }
 }

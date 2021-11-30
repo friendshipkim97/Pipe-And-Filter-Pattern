@@ -55,17 +55,13 @@ public class Student {
     }
 
     /**
-     * getters and Setters
+     * getters
      */
+
     public String getStudentNumber() { return studentNumber; }
-    public void setStudentNumber(String studentNumber) { this.studentNumber = studentNumber; }
     public String getLastName() { return lastName; }
-    public void setLastName(String lastName) { this.lastName = lastName; }
     public String getFirstName() { return firstName; }
-    public void setFirstName(String firstName) { this.firstName = firstName; }
     public String getMajor() { return major; }
-    public void setMajor(String major) { this.major = major; }
     public List<String> getCourses() { return courses; }
-    public void setCourses(List<String> courses) { this.courses = courses; }
 
 }

@@ -3,13 +3,11 @@
  */
 package framework;
 
-import component.addFilter.AddFilter1;
-import component.addFilter.AddFilter2;
-import component.addFilter.AddFilter3;
-import component.middle.MiddleFilter1;
-import component.middle.MiddleFilter2;
-import component.middle.MiddleFilter3;
-import component.middle.MiddleFilter4;
+import component.filter.TakingCourseFilter;
+import component.constant.Constants.ELifeCycleManager;
+import component.filter.AdvancedCourseFilter;
+import component.filter.StudentMajorFilter;
+import component.filter.StudentNumberFilter;
 import component.sink.SinkFilter;
 import component.source.SourceFilter;
 
@@ -20,10 +18,10 @@ public class LifeCycleManager {
         try {
 
             LifeCycleManager lifeCycleManager = new LifeCycleManager();
-            //lifeCycleManager.hw1();
+            lifeCycleManager.hw1();
             //lifeCycleManager.hw2();
             //lifeCycleManager.hw3();
-            lifeCycleManager.hw4();
+            //lifeCycleManager.hw4();
 
         } catch(Exception e) {
             e.printStackTrace();
@@ -31,19 +29,22 @@ public class LifeCycleManager {
     }
 
     private void hw1() throws IOException {
-        CommonFilter sourceFilter = new SourceFilter("Students.txt", 0);
-        CommonFilter sinkFilter = new SinkFilter("Output.txt", 0);
-        CommonFilter middleFilter = new MiddleFilter1();
-        CommonFilter addFilter = new AddFilter1();
+        CommonFilter sourceFilter = new SourceFilter(ELifeCycleManager.eStudentFileName.getContent(), ELifeCycleManager.ePortZero.getNumber());
+        CommonFilter sinkFilter = new SinkFilter(ELifeCycleManager.eOutputFileName.getContent(), ELifeCycleManager.ePortZero.getNumber());
+        CommonFilter studentMajorFilter = new StudentMajorFilter(ELifeCycleManager.eCSMajor.getContent(),
+                ELifeCycleManager.eTrue.isCheck());
+        CommonFilter takingCourseFilter = new TakingCourseFilter(ELifeCycleManager.eTrue.isCheck()
+                , ELifeCycleManager.eCourseNumber12345.getContent()
+                , ELifeCycleManager.eCourseNumber23456.getContent());
 
-        sourceFilter.connectOutputTo(middleFilter, 0);
-        middleFilter.connectOutputTo(addFilter, 0);
-        addFilter.connectOutputTo(sinkFilter, 0);
+        sourceFilter.connectOutputTo(studentMajorFilter, ELifeCycleManager.ePortZero.getNumber());
+        studentMajorFilter.connectOutputTo(takingCourseFilter, ELifeCycleManager.ePortZero.getNumber());
+        takingCourseFilter.connectOutputTo(sinkFilter, ELifeCycleManager.ePortZero.getNumber());
 
         Thread thread1 = new Thread(sourceFilter);
         Thread thread2 = new Thread(sinkFilter);
-        Thread thread3 = new Thread(middleFilter);
-        Thread thread4 = new Thread(addFilter);
+        Thread thread3 = new Thread(studentMajorFilter);
+        Thread thread4 = new Thread(takingCourseFilter);
 
         thread1.start();
         thread2.start();
@@ -53,19 +54,21 @@ public class LifeCycleManager {
 
 
     private void hw2() throws IOException {
-        CommonFilter sourceFilter = new SourceFilter("Students.txt", 0);
-        CommonFilter sinkFilter = new SinkFilter("Output.txt", 0);
-        CommonFilter middleFilter2 = new MiddleFilter2();
-        CommonFilter addFilter2 = new AddFilter2();
+        CommonFilter sourceFilter = new SourceFilter(ELifeCycleManager.eStudentFileName.getContent(), ELifeCycleManager.ePortZero.getNumber());
+        CommonFilter sinkFilter = new SinkFilter(ELifeCycleManager.eOutputFileName.getContent(), ELifeCycleManager.ePortZero.getNumber());
+        CommonFilter studentMajorFilter = new StudentMajorFilter(ELifeCycleManager.eEEMajor.getContent(),
+                ELifeCycleManager.eTrue.isCheck());
+        CommonFilter takingCourseFilter = new TakingCourseFilter(ELifeCycleManager.eTrue.isCheck()
+                , ELifeCycleManager.eCourseNumber23456.getContent());
 
-        sourceFilter.connectOutputTo(middleFilter2, 0);
-        middleFilter2.connectOutputTo(addFilter2, 0);
-        addFilter2.connectOutputTo(sinkFilter, 0);
+        sourceFilter.connectOutputTo(studentMajorFilter, ELifeCycleManager.ePortZero.getNumber());
+        studentMajorFilter.connectOutputTo(takingCourseFilter, ELifeCycleManager.ePortZero.getNumber());
+        takingCourseFilter.connectOutputTo(sinkFilter, ELifeCycleManager.ePortZero.getNumber());
 
         Thread thread1 = new Thread(sourceFilter);
         Thread thread2 = new Thread(sinkFilter);
-        Thread thread3 = new Thread(middleFilter2);
-        Thread thread4 = new Thread(addFilter2);
+        Thread thread3 = new Thread(studentMajorFilter);
+        Thread thread4 = new Thread(takingCourseFilter);
 
         thread1.start();
         thread2.start();
@@ -74,45 +77,51 @@ public class LifeCycleManager {
     }
 
     private void hw3() throws IOException {
-        CommonFilter sourceFilter = new SourceFilter("Students.txt", 0);
-        CommonFilter sinkFilter = new SinkFilter("Output.txt", 0);
-        CommonFilter middleFilter3 = new MiddleFilter3();
-        CommonFilter addFilter3 = new AddFilter3();
+        CommonFilter sourceFilter = new SourceFilter(ELifeCycleManager.eStudentFileName.getContent(), ELifeCycleManager.ePortZero.getNumber());
+        CommonFilter sinkFilter = new SinkFilter(ELifeCycleManager.eOutputFileName.getContent(), ELifeCycleManager.ePortZero.getNumber());
+        CommonFilter studentNumberFilter = new StudentNumberFilter(ELifeCycleManager.eStudentNumber2013.getContent());
+        CommonFilter studentMajorFilter = new StudentMajorFilter(ELifeCycleManager.eCSMajor.getContent(), ELifeCycleManager.eFalse.isCheck());
+        CommonFilter takingCourseFilter = new TakingCourseFilter(ELifeCycleManager.eFalse.isCheck(),
+                ELifeCycleManager.eCourseNumber17651.getContent(),
+                ELifeCycleManager.eCourseNumber17652.getContent());
 
-        sourceFilter.connectOutputTo(middleFilter3, 0);
-        middleFilter3.connectOutputTo(addFilter3, 0);
-        addFilter3.connectOutputTo(sinkFilter, 0);
+        sourceFilter.connectOutputTo(studentNumberFilter, ELifeCycleManager.ePortZero.getNumber());
+        studentNumberFilter.connectOutputTo(studentMajorFilter, ELifeCycleManager.ePortZero.getNumber());
+        studentMajorFilter.connectOutputTo(takingCourseFilter, ELifeCycleManager.ePortZero.getNumber());
+        takingCourseFilter.connectOutputTo(sinkFilter, ELifeCycleManager.ePortZero.getNumber());
 
         Thread thread1 = new Thread(sourceFilter);
         Thread thread2 = new Thread(sinkFilter);
-        Thread thread3 = new Thread(middleFilter3);
-        Thread thread4 = new Thread(addFilter3);
+        Thread thread3 = new Thread(studentNumberFilter);
+        Thread thread4 = new Thread(studentMajorFilter);
+        Thread thread5 = new Thread(takingCourseFilter);
 
         thread1.start();
         thread2.start();
         thread3.start();
         thread4.start();
+        thread5.start();
     }
 
     private void hw4() throws IOException {
-        CommonFilter sourceFilter1 = new SourceFilter("Students.txt", 0);
-        CommonFilter sourceFilter2 = new SourceFilter("Courses.txt", 1);
+        CommonFilter sourceFilter1 = new SourceFilter(ELifeCycleManager.eStudentFileName.getContent(), ELifeCycleManager.ePortZero.getNumber());
+        CommonFilter sourceFilter2 = new SourceFilter(ELifeCycleManager.eCourseFileName.getContent(), ELifeCycleManager.ePortOne.getNumber());
 
-        CommonFilter sinkFilter1 = new SinkFilter("Output-1.txt", 0);
-        CommonFilter sinkFilter2 = new SinkFilter("Output-2.txt", 1);
+        CommonFilter sinkFilter1 = new SinkFilter(ELifeCycleManager.eOutput1FileName.getContent(), ELifeCycleManager.ePortZero.getNumber());
+        CommonFilter sinkFilter2 = new SinkFilter(ELifeCycleManager.eOutput2FileName.getContent(), ELifeCycleManager.ePortOne.getNumber());
 
-        CommonFilter middleFilter4 = new MiddleFilter4();
+        CommonFilter advancedCourseFilter = new AdvancedCourseFilter();
 
-        sourceFilter1.connectOutputTo(middleFilter4, 0);
-        sourceFilter2.connectOutputTo(middleFilter4, 1);
-        middleFilter4.connectOutputTo(sinkFilter1, 0);
-        middleFilter4.connectOutputTo(sinkFilter2, 1);
+        sourceFilter1.connectOutputTo(advancedCourseFilter, ELifeCycleManager.ePortZero.getNumber());
+        sourceFilter2.connectOutputTo(advancedCourseFilter, ELifeCycleManager.ePortOne.getNumber());
+        advancedCourseFilter.connectOutputTo(sinkFilter1, ELifeCycleManager.ePortZero.getNumber());
+        advancedCourseFilter.connectOutputTo(sinkFilter2, ELifeCycleManager.ePortOne.getNumber());
 
         Thread thread1 = new Thread(sourceFilter1);
         Thread thread2 = new Thread(sourceFilter2);
         Thread thread3 = new Thread(sinkFilter1);
         Thread thread4 = new Thread(sinkFilter2);
-        Thread thread5 = new Thread(middleFilter4);
+        Thread thread5 = new Thread(advancedCourseFilter);
 
         thread1.start();
         thread2.start();
