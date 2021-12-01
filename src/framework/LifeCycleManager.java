@@ -16,13 +16,11 @@ import java.io.IOException;
 public class LifeCycleManager {
     public static void main(String[] args) {
         try {
-
             LifeCycleManager lifeCycleManager = new LifeCycleManager();
             //lifeCycleManager.hw1();
             //lifeCycleManager.hw2();
             //lifeCycleManager.hw3();
             lifeCycleManager.hw4();
-
         } catch(Exception e) {
             e.printStackTrace();
         }

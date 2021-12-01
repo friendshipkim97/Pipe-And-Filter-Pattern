@@ -22,9 +22,7 @@ public class Course {
             else if(i == ECourse.eSizeOne.getNumber()) this.professorLastName = strAry[i];
             else if(i == ECourse.eSizeTwo.getNumber()) this.courseName = strAry[i];
             else if(i >= ECourse.eSizeThree.getNumber()) { String tempCourse = strAry[i].trim();
-                this.advancedCourseNumbers.add(tempCourse); }
-        }
-    }
+                this.advancedCourseNumbers.add(tempCourse); } } }
 
     /**
      * getters
